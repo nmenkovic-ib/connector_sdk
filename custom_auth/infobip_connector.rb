@@ -108,8 +108,7 @@
 
               received_since_formatted = received_since.strftime("%FT%T.%L%:z")
               received_messages = get("https://api.infobip.com/sms/1/inbox/logs").
-                  params(receivedSince: received_since_formatted,
-                         limit: 2)
+                  params(receivedSince: received_since_formatted)
 
               received_sms_info = received_messages['results']
 
