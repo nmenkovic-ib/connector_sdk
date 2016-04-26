@@ -104,7 +104,7 @@
               ]
             },
             poll: ->(connection, input, last_received_since) {
-              received_since = last_received_since || input['received_since'] || Time.now
+              received_since = last_received_since || input['received_since']
 
               received_since_formatted = received_since.strftime("%FT%T.%L%:z")
               received_messages = get("https://api.infobip.com/sms/1/inbox/logs").
@@ -116,7 +116,7 @@
               {
                   events: received_sms_info,
                   next_poll: next_received_since,
-                  can_poll_more: received_sms_info.length >= 2
+                  can_poll_more: true
               }
             },
             dedup: ->(received_sms_info) {
